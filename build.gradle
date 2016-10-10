@@ -8,7 +8,6 @@ plugins {
     id 'nebula.ospackage' version '3.4.0'
 }
 
-apply plugin: 'cpp'
 apply plugin: 'java'
 
 def packageName = 'ppconsul'
@@ -17,29 +16,6 @@ def formation_one_path = '/opt/fds/formation_one'
 dependencies {
   compile files('/usr/lib/x86_64-linux-gnu/libcurl.so.3')
   compile files(formation_one_path + '/packages/boost-1.55/lib/libboost*.so')
-}
-
-model{
-  binaries {
-    all {
-	if (toolChain in Gcc) {
-		cppCompiler.args "-O2", "-march=native", "-pipe"
-	}
-    }
-  }
-
-  components{
-    ppconsul(NativeLibrarySpec) {
-      sources {
-        cpp {
-          source {
-            srcDirs "src", "include/ppconsul"
-            include "**/*.cpp, *.cpp, **/*.h, *.h"
-          }
-        }
-      }
-    }
-  }
 }
 
 ospackage {
@@ -56,14 +32,14 @@ ospackage {
     permissionGroup 'root'
   }
 
-  from ('include/'){
+  from ('include/ppconsul'){
     into formation_one_path + '/packages/' + packageName + '/include'
     include '*.h'
     user 'root'
     permissionGroup 'root'
   }
 
-  from ('src/output') {
+  from ('output') {
     into formation_one_path + '/packages/' + packageName + '/lib'
     include '*.a'
     include '*.so'
