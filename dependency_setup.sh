@@ -6,5 +6,5 @@ wget http://bld-artifactory:8081/artifactory/formation-apt/pool/nightly/boost-1.
 sudo -s << 'EOF'
 dpkg -i boost-1.55_1.55_amd64.deb
 EOF
-wget http://bld-artifactory:8081/artifactory/external_packages/curl-7.36.0.tar.gz
-tar xvzf curl-7.36.0.tar.gz
+# There is a libCurl dependency but devsetup installs this and all our Jenkins servers should
+# already have curl installed, so shouldn't need to do anything extra here
