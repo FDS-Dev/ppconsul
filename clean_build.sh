@@ -11,8 +11,8 @@ find . -type d -name build -exec rm -rf {} +
 find . -type d -name output -exec rm -rf {} +
 
 #Remove any dependencies downloaded
-find . -name boost*.deb -exec rm {} +
-find . -name curl*.gz -exec rm {} +
+find . -name boost*.deb* -exec rm {} +
+find . -name curl*.gz* -exec rm {} +
 find . -type d -name curl* -exec rm -rf {} +
 
 

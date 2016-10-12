@@ -21,7 +21,7 @@ dependencies {
 ospackage {
   url = 'https://github.com/fds-dev/ppconsul'
   version = '0.1'
-  release = '20161007'
+  release = '1'
   packageName = 'ppconsul-' + version + '-' + release
   packageDescription = 'The ppconsul package for fds in order to perform consul service lookups from the native side'
 
