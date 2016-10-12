@@ -58,11 +58,23 @@ buildRpm {
   arch = 'X86_64'
 }
 
-task cleanArtifacts(type:Exec){
+task makeClean( type:Exec ) {
     commandLine 'make', 'clean'
 }
 
-task buildLibs( type:Exec ){
+task cleanArtifacts( type:Exec ) {
+    commandLine 'sh', './clean_build.sh'
+}
+
+task setupDependencies( type:Exec ) {
+    commandLine 'sh', './dependency_setup.sh'
+}
+
+task cmake ( type: Exec ) {
+    commandLine 'cmake', '.'
+}
+
+task buildLibs( type:Exec ) {
     commandLine 'make'
 }
 
@@ -134,9 +146,14 @@ task deployRpm( dependsOn: ['buildRpm' ] ) << {
   }
 }
 
+cmake.dependsOn setupDependencies
+buildLibs.dependsOn cmake
 build.dependsOn buildLibs
+
 buildDeb.dependsOn build
 buildRpm.dependsOn build
 deployDeb.dependsOn buildDeb
 deployRpm.dependsOn buildRpm
+
+cleanArtifacts.dependsOn makeClean
 clean.dependsOn cleanArtifacts
