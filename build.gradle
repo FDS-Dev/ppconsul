@@ -13,11 +13,6 @@ apply plugin: 'java'
 def packageName = 'ppconsul'
 def formation_one_path = '/opt/fds/formation_one'
 
-dependencies {
-  compile files('/usr/lib/x86_64-linux-gnu/libcurl.so.3')
-  compile files(formation_one_path + '/packages/boost-1.55/lib/libboost*.so')
-}
-
 ospackage {
   url = 'https://github.com/fds-dev/ppconsul'
   version = '0.1'
