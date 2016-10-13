@@ -86,4 +86,4 @@ include_directories(ext)
 
 add_subdirectory(ext/json11)
 add_subdirectory(src)
-add_subdirectory(tests)
+#add_subdirectory(tests)
