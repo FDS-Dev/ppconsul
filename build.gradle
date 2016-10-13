@@ -10,8 +10,9 @@ plugins {
 
 apply plugin: 'java'
 
-def packageName = 'ppconsul'
 def formation_one_path = '/opt/fds/formation_one'
+
+version = '0.1'
 
 ospackage {
   url = 'https://github.com/fds-dev/ppconsul'
