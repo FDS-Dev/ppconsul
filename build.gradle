@@ -17,7 +17,7 @@ version = '0.1'
 ospackage {
   url = 'https://github.com/fds-dev/ppconsul'
   version = '0.1'
-  release = '1'
+  release = '2'
   packageName = 'ppconsul-' + version + '-' + release
   packageDescription = 'The ppconsul package for fds in order to perform consul service lookups from the native side'
 
@@ -33,6 +33,13 @@ ospackage {
     include '*.h'
     user 'root'
     permissionGroup 'root'
+  }
+  
+  from ('ext/json11') {
+    into formation_one_path + '/packages/' + packageName + '/include/ppconsul'
+    include '*.hpp'
+    user 'root'
+    permissionGroup 'root' 
   }
 
   from ('output') {
